@@ -1,0 +1,5 @@
+<img *ngIf="avatar$ | async as avatar; else noAvatarTmpl" class="avatar" [src]="avatar" />
+
+<ng-template #noAvatarTmpl>
+  {{ initial$ | async }}
+</ng-template>

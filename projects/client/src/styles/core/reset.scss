@@ -1,0 +1,34 @@
+@import 'projects/client/src/styles/core/utilities';
+
+html {
+  scrollbar-color: li-color($ink, lightest) transparent;
+  scrollbar-width: thin;
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+
+  &-track {
+    background: transparent;
+  }
+
+  &-thumb {
+    background: li-color($ink, lightest);
+
+    &:hover {
+      background: li-color($ink, light);
+    }
+  }
+}

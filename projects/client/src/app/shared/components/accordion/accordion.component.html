@@ -1,0 +1,7 @@
+<ng-container *ngTemplateOutlet="header?.tr || null"></ng-container>
+
+<div class="accordion-content" [@bodyExpansion]="expandedState">
+  <ng-container *ngIf="showContent$ | async">
+    <ng-container *ngTemplateOutlet="content?.tr || null"></ng-container>
+  </ng-container>
+</div>

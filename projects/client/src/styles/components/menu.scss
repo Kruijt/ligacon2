@@ -1,0 +1,19 @@
+.mat-menu {
+  &-panel {
+    min-height: 32px;
+  }
+
+  &-content:not(:empty) {
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
+
+  &-item {
+    height: 40px;
+    line-height: 40px;
+
+    .mat-icon {
+      margin-right: 8px;
+    }
+  }
+}

@@ -1,0 +1,24 @@
+@import 'projects/client/src/styles/core/utilities';
+@import 'projects/client/src/styles/core/shadows';
+
+@mixin li-area($shadow: false, $background: $white, $stroke: true) {
+  @if ($shadow) {
+    @extend %#{$shadow};
+  }
+  @if ($stroke) {
+    border: 1px solid $space;
+  }
+
+  overflow: hidden;
+  border-radius: 10px;
+
+  background-color: $background;
+}
+
+.li-area-z1 {
+  @include li-area(li-shadow-2);
+}
+
+.li-area-z-1 {
+  @include li-area(false, $space);
+}

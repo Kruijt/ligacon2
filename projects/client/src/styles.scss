@@ -1,0 +1,154 @@
+@use '~@angular/material' as mat;
+
+@import 'styles/core/colors';
+
+$primary-palette: (
+  50: #727272,
+  100: #676767,
+  200: #545454,
+  300: #4f4f4f,
+  400: #3c3c3c,
+  500: $primary,
+  600: #2d2d2d,
+  700: #212121,
+  800: #1d1d1d,
+  900: #0e0e0e,
+  A100: #fff,
+  A200: #eee,
+  A400: #bdbdbd,
+  A700: #616161,
+  contrast: (
+    50: $ink,
+    100: $ink,
+    200: $ink,
+    300: $white,
+    400: $white,
+    500: $white,
+    600: $white,
+    700: $white,
+    800: $white,
+    900: $white,
+    A100: $ink,
+    A200: $ink,
+    A400: $ink,
+    A700: $white,
+  )
+);
+
+$accent-palette: (
+  50: #e3f2fd,
+  100: #bbdefb,
+  200: #90caf9,
+  300: #64b5f6,
+  400: #42a5f5,
+  500: $accent,
+  600: #1e88e5,
+  700: #1976d2,
+  800: #1565c0,
+  900: #0d47a1,
+  A100: #82b1ff,
+  A200: #448aff,
+  A400: #2979ff,
+  A700: #2962ff,
+  contrast: (
+    50: $ink,
+    100: $ink,
+    200: $ink,
+    300: $ink,
+    400: $ink,
+    500: $white,
+    600: $white,
+    700: $white,
+    800: $white,
+    900: $white,
+    A100: $ink,
+    A200: $white,
+    A400: $white,
+    A700: $white,
+  )
+);
+
+$warn-palette: (
+  50: #ffebee,
+  100: #ffcdd2,
+  200: #ef9a9a,
+  300: #e57373,
+  400: #ef5350,
+  500: #f44336,
+  600: #e53935,
+  700: #d32f2f,
+  800: #c62828,
+  900: #b71c1c,
+  A100: #ff8a80,
+  A200: #ff5252,
+  A400: #ff1744,
+  A700: #d50000,
+  contrast: (
+    50: $ink,
+    100: $ink,
+    200: $ink,
+    300: $ink,
+    400: $ink,
+    500: $white,
+    600: $white,
+    700: $white,
+    800: $white,
+    900: $white,
+    A100: $ink,
+    A200: $white,
+    A400: $white,
+    A700: $white,
+  )
+);
+
+$client-primary: mat.define-palette($primary-palette);
+$client-accent: mat.define-palette($accent-palette, a200, a100, a400);
+$client-warn: mat.define-palette($warn-palette);
+
+$client-typography: mat.define-typography-config(
+  $font-family:   '"Lato Regular", Roboto, "Helvetica Neue", sans-serif',
+  $display-4:     mat.define-typography-level(112px, 112px, 300, $letter-spacing: -0.05em),
+  $display-3:     mat.define-typography-level(56px, 56px, 400, $letter-spacing: -0.02em),
+  $display-2:     mat.define-typography-level(45px, 48px, 400, $letter-spacing: -0.005em),
+  $display-1:     mat.define-typography-level(34px, 40px, 400),
+  $headline:      mat.define-typography-level(24px, 32px, 400),
+  $title:         mat.define-typography-level(20px, 32px, 500),
+  $subheading-2:  mat.define-typography-level(16px, 28px, 400),
+  $subheading-1:  mat.define-typography-level(15px, 24px, 400),
+  $body-2:        mat.define-typography-level(14px, 24px, 500),
+  $body-1:        mat.define-typography-level(14px, 20px, 400),
+  $caption:       mat.define-typography-level(12px, 20px, 400),
+  $button:        mat.define-typography-level(14px, 14px, 500),
+
+  $input:         mat.define-typography-level(inherit, 1.125, 400)
+);
+
+@include mat.core($client-typography);
+
+$client-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $client-primary,
+      accent: $client-accent,
+      warn: $client-warn,
+    )
+  )
+);
+
+@include mat.all-component-themes($client-theme);
+
+@import './styles/core/reset';
+@import './styles/core/general';
+
+.li-theme {
+  @import './styles/text/typography';
+  @import './styles/core/theme';
+
+  @import './styles/layout/areas';
+  @import './styles/layout/flex-grid';
+  @import './styles/layout/structure';
+
+  @import './styles/components/button';
+  @import './styles/components/input';
+  @import './styles/components/menu';
+}

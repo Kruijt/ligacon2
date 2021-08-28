@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "ligacon-kruijt": {
+      "hosting": {
+        "client": [
+          "ligacon-kruijt"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "ligacon-kruijt"
+  }
+}

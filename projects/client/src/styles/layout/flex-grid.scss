@@ -1,0 +1,135 @@
+@use 'sass:math';
+
+@function parse-align($align) {
+  $align: if($align == start, flex-start, $align);
+  $align: if($align == end, flex-end, $align);
+  $align: if($align == around, space-around, $align);
+  $align: if($align == between, space-between, $align);
+
+  @return $align;
+}
+
+@mixin z-fx-place-content($main-axis, $cross-axis) {
+  $main-axis: parse-align($main-axis);
+  $cross-axis: parse-align($cross-axis);
+
+  &.li-fx,
+  &.li-fx-col {
+    align-items: $cross-axis;
+    justify-content: $main-axis;
+  }
+}
+@mixin z-fx-gap($gap) {
+  $gap: #{$gap}px;
+
+  &.li-fx {
+    > * + * {
+      margin-left: $gap;
+    }
+  }
+
+  &.li-fx-col {
+    > * + * {
+      margin-top: $gap;
+    }
+  }
+}
+
+.li-fx,
+.li-fx-row {
+  display: flex;
+
+  > .li-fx-auto,
+  > .li-fx-grow {
+    min-width: 0;
+  }
+}
+
+.li-fx-inline {
+  display: inline-flex;
+}
+
+.li-fx-col {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+
+  > .li-fx-auto,
+  > .li-fx-grow {
+    min-height: 0;
+  }
+}
+
+$main-align: start, center, end, around, between, baseline;
+$cross-align: append($main-align, stretch);
+
+@each $main in $main-align {
+  @each $cross in $cross-align {
+    .li-fx-#{$main}-#{$cross} {
+      @include z-fx-place-content($main, $cross);
+    }
+  }
+}
+
+$max-gap: 128;
+
+.li-fx-gap-4 {
+  @include z-fx-gap(4);
+}
+
+@for $i from 1 through math.div($max-gap, 8) {
+  .li-fx-gap-#{$i * 8} {
+    @include z-fx-gap($i * 8);
+  }
+}
+
+// Flex Child
+
+@mixin z-fx-flex($flex) {
+  flex: $flex;
+}
+
+.li-fx-grow {
+  @include z-fx-flex(1 1 100%);
+}
+
+.li-fx-flex {
+  @include z-fx-flex(1 1 0%);
+}
+
+.li-fx-auto {
+  @include z-fx-flex(1 1 auto);
+}
+
+.li-fx-none {
+  @include z-fx-flex(0 0 auto);
+}
+
+.li-fx-no-shrink {
+  @include z-fx-flex(1 0 auto);
+}
+
+.li-fx-no-grow,
+.li-fx-initial {
+  @include z-fx-flex(0 1 0%);
+}
+
+.li-fx-fill {
+  @include z-fx-flex(1 1 auto);
+
+  &.li-fx {
+    width: 100%;
+  }
+
+  &.li-fx-col {
+    height: 100%;
+  }
+}
+
+$flex-align: start center end baseline stretch;
+
+@each $align in $flex-align {
+  .li-fx-flex-#{$align} {
+    align-self: parse-align($align);
+  }
+}

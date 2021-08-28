@@ -1,0 +1,30 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /collections/{collection} {
+      allow create: if isValidNew();
+      allow read, delete, update: if isOwner();
+
+      match /icons/{icon} {
+        allow create: if isValidNew();
+        allow read, delete, update: if isOwner() && exists(/databases/$(database)/documents/collections/$(collection)) && get(/databases/$(database)/documents/collections/$(collection)).owner == request.auth.uid;
+      }
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner() {
+      return isSignedIn() && (resource == null || resource.data.owner == request.auth.uid);
+    }
+
+    function isValidNew() {
+      return isSignedIn() && resource == null && request.resource.data.owner == request.auth.uid;
+    }
+  }
+}
+
+O1myckjF3fQO100gKr0U
+RWdqB7mdUUc5fZWu4F1Vg3o5oS53

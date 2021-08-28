@@ -1,0 +1,14 @@
+@import 'projects/client/src/styles/core/utilities';
+
+.li-background-ink {
+  color: li-contrast($ink);
+  background-color: $ink;
+}
+
+.li-background-light {
+  background: linear-gradient(to bottom, li-color($space, light), $space);
+}
+
+.li-background-space-dark {
+  background: linear-gradient(to bottom, li-color($space, dark), li-color($space, darker));
+}

@@ -1,0 +1,20 @@
+@import '../../../../styles/core/colors';
+
+:host {
+  display: flex;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+
+  font-size: 24px;
+  color: $ink;
+  background-color: $white;
+}
+
+.avatar {
+  max-width: 100%;
+  max-height: 100%;
+}

@@ -1,0 +1,11 @@
+<mat-toolbar class="li-fx li-fx-start-center" color="primary">
+  <div class="li-fx-flex"></div>
+
+  <h1 class="li-fx-none">
+    {{ (routerData$ | async)?.title }}
+  </h1>
+
+  <div class="li-fx-flex li-fx li-fx-end-center">
+    <li-avatar></li-avatar>
+  </div>
+</mat-toolbar>

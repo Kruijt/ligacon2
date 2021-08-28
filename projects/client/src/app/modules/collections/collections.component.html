@@ -1,0 +1,13 @@
+<div class="li-fx-col li-fx-gap-32">
+  <div class="li-fx li-fx-end-center">
+    <button mat-raised-button class="li-combo-button" color="accent" (click)="createCollection()">
+      <mat-icon>add</mat-icon>
+
+      <span>Create collection</span>
+    </button>
+  </div>
+
+  <div class="li-fx-col li-fx-gap-24">
+    <li-collection *for="let collection of collections$ | async" [collection]="collection"></li-collection>
+  </div>
+</div>

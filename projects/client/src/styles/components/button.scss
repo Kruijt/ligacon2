@@ -1,0 +1,83 @@
+@import '../../styles/core/utilities';
+
+@keyframes button-loading {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 25px 0;
+  }
+}
+
+.li-combo-button {
+  padding-left: 8px;
+
+  .mat-button-wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  .mat-icon {
+    margin-right: 4px;
+  }
+
+  &-reverse {
+    padding-right: 8px;
+
+    .mat-button-wrapper {
+      display: flex;
+      align-items: center;
+    }
+
+    .mat-icon {
+      margin-left: 4px;
+    }
+  }
+}
+
+@mixin button-states($color) {
+
+}
+
+$button-colors:
+  (
+    color: $primary,
+    name: primary
+  ),
+  (
+    color: $accent,
+    name: accent
+  );
+
+.mat-button-base {
+  @each $button-color in $button-colors {
+    $color: map-get($button-color, color);
+    $contrast: li-contrast($color);
+
+    &.mat-#{map-get($button-color, name)} {
+      &:disabled {
+        color: $contrast;
+
+        &.loading {
+          opacity: 1;
+        }
+      }
+
+      &.loading {
+        pointer-events: none !important;
+        background-size: 25px;
+        background-image:
+          repeating-linear-gradient(
+            90deg,
+            mix($contrast, $color, 10%),
+            mix($contrast, $color, 10%) 5px,
+            $color 6px,
+            $color 20px
+          ) !important;
+
+        animation: button-loading 400ms linear infinite;
+      }
+    }
+  }
+}
